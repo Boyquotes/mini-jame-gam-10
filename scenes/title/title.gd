@@ -6,15 +6,7 @@ func _ready() -> void:
 
 
 func _on_Start_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_Load_pressed() -> void:
-	SaveLoad.show_save_load()
-
-
-func _on_Settings_pressed() -> void:
-	Settings.show_settings()
+	get_tree().change_scene("res://scenes/world/world.tscn")
 
 
 func _on_Credits_pressed() -> void:

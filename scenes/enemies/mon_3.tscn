@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/enemies/cat_1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/bullets/enemy_bullet_2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/enemies/mon3.png" type="Texture" id=3]
+[ext_resource path="res://scenes/drops/rapid.tscn" type="PackedScene" id=4]
+
+[node name="Mon3" instance=ExtResource( 1 )]
+speed = 180.0
+bullet = ExtResource( 2 )
+drop = ExtResource( 4 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 3 )
