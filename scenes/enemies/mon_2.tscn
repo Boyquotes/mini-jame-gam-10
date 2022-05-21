@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/bullets/enemy_bullet_2.tscn" type="PackedScene" id=4]
 
 [node name="Mon2" instance=ExtResource( 1 )]
-speed = 160.0
 max_health = 4.0
 bullet = ExtResource( 4 )
 drop = ExtResource( 3 )

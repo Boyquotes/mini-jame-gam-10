@@ -7,7 +7,6 @@
 
 [node name="Cat2" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
-speed = 120.0
 max_health = 2.0
 drop = ExtResource( 4 )
 drop_chance = 0.1

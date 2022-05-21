@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/title/title.gd" type="Script" id=1]
 [ext_resource path="res://themes/main.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/title/Lullaby.ogg" type="AudioStream" id=3]
 
 [node name="Title" type="Control"]
 anchor_right = 1.0
@@ -86,13 +87,25 @@ margin_bottom = -4.0
 bbcode_enabled = true
 bbcode_text = "[center]Made with [url=https://godotengine.org/]Godot 3.4.4[/url]
 Programmed by Exuin
-Art by amberkazefan69[/center]"
+Art by amberkazefan69
+[url=https://joshuuu.itch.io/short-loopable-background-music]Music from jhaeka[/url]
+[url=https://managore.itch.io/m5x7]Font used - m5x7 by Daniel Linssen[/url]
+[url=https://godotshaders.com/shader/glitch-effect-shader/]Glitch Effect Shader by Yui Kinomoto[/url]
+Glitch Sound from Zapsplat.com[/center]"
 text = "Made with Godot 3.4.4
 Programmed by Exuin
-Art by amberkazefan69"
+Art by amberkazefan69
+Music from jhaeka
+Font used - m5x7 by Daniel Linssen
+Glitch Effect Shader by Yui Kinomoto
+Glitch Sound from Zapsplat.com"
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_Credits_pressed"]

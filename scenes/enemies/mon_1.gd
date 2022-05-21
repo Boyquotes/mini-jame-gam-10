@@ -17,7 +17,7 @@ func shoot() -> void:
 	if is_dying:
 		return
 	if target:
-		for i in 10:
+		for i in 5:
 			var b := bullet.instance()
 			get_parent().add_child(b)
 			b.global_position = position + global_position.direction_to(target.global_position) * bullet_offset

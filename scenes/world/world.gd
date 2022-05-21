@@ -41,6 +41,10 @@ var dialogue := [
 	[
 		{
 			"name": "Bun",
+			"speech": "Wow, reality is breaking! I'm close to my phone! I can feel it!"
+		},
+		{
+			"name": "Bun",
 			"speech": "What's that? A monster? I must be on the right path to find my phone!"
 		},
 		{
@@ -65,7 +69,7 @@ var dialogue := [
 	[
 		{
 			"name": "Bun",
-			"speech": "Wow, reality is breaking! I'm close to my phone! I can feel it!"
+			"speech": "I know you monsters have my phone!!!"
 		},
 		{
 			"name": "Red Cat",
@@ -119,6 +123,8 @@ func _on_Player2D_player_health_changed() -> void:
 
 func _on_Player2D_player_died() -> void:
 	$CanvasLayer/Control/GameOver.show()
+	$Music.stream = preload("res://scenes/world/GameOver.ogg")
+	$Music.play()
 
 
 func _on_Button_pressed() -> void:
@@ -197,13 +203,20 @@ func on_enemy_died() -> void:
 
 func advance_wave() -> void:
 	wave += 1
-	if wave == 5:
+	if wave == 3:
 		$Background.texture = preload("res://scenes/world/BG2.png")
+		$Music.stream = preload("res://scenes/world/Dangerous Path.ogg")
+		$Music.play()
+		$CanvasLayer/Control/Glitch.show()
+		$CanvasLayer/Control/Glitch/GTimer.start()
+		$Glitch.play()
 	index = -1
 	if wave == 7:
 		$Background.texture = preload("res://scenes/world/BG1.png")
 		$CanvasLayer/Control/GameOver/Label.text = "YOU WIN?!"
 		$CanvasLayer/Control/GameOver.show()
+		$Music.stream = preload("res://scenes/world/Victory.ogg")
+		$Music.play()
 		return
 	if wave < dialogue.size() and dialogue[wave]:
 		$CanvasLayer/Control/Dialogue.show()
@@ -245,3 +258,7 @@ func _on_Timer_timeout() -> void:
 	$CanvasLayer/Control/Dialogue/HBoxContainer/VBoxContainer/Speech.visible_characters += 1
 	if not $CanvasLayer/Control/Dialogue/HBoxContainer/VBoxContainer/Speech.percent_visible == 1.0:
 		$CanvasLayer/Control/Dialogue/HBoxContainer/VBoxContainer/Speech/Timer.start()
+
+
+func _on_GTimer_timeout() -> void:
+	$CanvasLayer/Control/Glitch.hide()

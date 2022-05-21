@@ -76,6 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 
 func fire() -> void:
+	$Shoot.play()
 	var b
 	if not use_bb:
 		b = bullet.instance()
@@ -97,11 +98,13 @@ func _on_Hitbox_area_exited(area: Area2D) -> void:
 	if is_dying:
 		return
 	if health <= 0:
+		$Hit.play()
 		is_dying = true
 		for enemy in get_tree().get_nodes_in_group("enemy"):
 			enemy.target = null
 		$AnimationPlayer.play("die")
 	elif $InvincTimer.is_stopped() and not use_shield:
+		$Hit.play()
 		$AnimationPlayer.play("flash")
 		$InvincTimer.start()
 
@@ -120,6 +123,7 @@ func _on_DropPickup_area_entered(area: Area2D) -> void:
 	if not area.get("id"):
 		area.queue_free()
 		return
+	$Powerup.play()
 	match area.id:
 		"heal":
 			health += 1

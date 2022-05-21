@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/drops/rapid.tscn" type="PackedScene" id=4]
 
 [node name="Mon3" instance=ExtResource( 1 )]
-speed = 180.0
 bullet = ExtResource( 2 )
 drop = ExtResource( 4 )
 
