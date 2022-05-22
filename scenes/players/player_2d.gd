@@ -137,7 +137,7 @@ func _on_DropPickup_area_entered(area: Area2D) -> void:
 		"shield":
 			use_shield = true
 			$ShieldTimer.start()
-			$Sprite.modulate = Color("0000ff")
+			$Shield.show()
 		"rapid":
 			$FireTimer.wait_time = 0.1
 			$RapidTimer.start()
@@ -150,7 +150,7 @@ func _on_BBTimer_timeout() -> void:
 
 func _on_ShieldTimer_timeout() -> void:
 	use_shield = false
-	$Sprite.modulate = Color.white
+	$Shield.hide()
 
 
 func _on_RapidTimer_timeout() -> void:

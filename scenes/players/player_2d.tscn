@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/players/front.png" type="Texture" id=1]
 [ext_resource path="res://scenes/players/player_2d.gd" type="Script" id=2]
@@ -9,14 +9,7 @@
 [ext_resource path="res://scenes/players/powerup.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/players/shoot.wav" type="AudioStream" id=8]
 [ext_resource path="res://scenes/players/hit.wav" type="AudioStream" id=9]
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 25, 25 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 5 )
-region = Rect2( 25, 0, 25, 25 )
+[ext_resource path="res://scenes/players/Shield_bubble.png" type="Texture" id=10]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
@@ -24,6 +17,14 @@ region = Rect2( 0, 0, 25, 25 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
+region = Rect2( 25, 0, 25, 25 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 25, 25 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
 region = Rect2( 25, 0, 25, 25 )
 
 [sub_resource type="AtlasTexture" id=7]
@@ -36,14 +37,14 @@ region = Rect2( 25, 0, 25, 25 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "back",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "front",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "back",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 7 ), SubResource( 8 ) ],
@@ -194,6 +195,11 @@ stream = ExtResource( 8 )
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
+
+[node name="Shield" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -12 )
+texture = ExtResource( 10 )
 
 [connection signal="area_exited" from="Hitbox" to="." method="_on_Hitbox_area_exited"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_FireTimer_timeout"]

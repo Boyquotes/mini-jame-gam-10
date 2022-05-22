@@ -79,6 +79,34 @@ var dialogue := [
 	[
 		{
 			"name": "Bun",
+			"speech": "I hope I find my phone soon! This is getting scary!"
+		},
+		{
+			"name": "Red Cat",
+			"speech": "Please save us from this rabid bunny!"
+		}
+	],
+	[
+		{
+			"name": "Bun",
+			"speech": "PHOOOOONE! Where are you!"
+		},
+		{
+			"name": "Red Cat",
+			"speech": "What's that? Is that a phone with ears?"
+		},
+		{
+			"name": "Bun",
+			"speech": "What did you say? Come closer so I can hear you better!"
+		},
+		{
+			"name": "Red Cat",
+			"speech": "NOOOO!!! pwp"
+		}
+	],
+	[
+		{
+			"name": "Bun",
 			"speech": "Phone! I found you!"
 		},
 		{
@@ -191,6 +219,26 @@ func spawn_wave(num: int) -> void:
 			for _i in 4:
 				spawn_enemy(mon_3)
 		6:
+			num_left = 15
+			for _i in 3:
+				spawn_enemy(cat_1)
+			for _i in 1:
+				spawn_enemy(cat_2)
+			for _i in 3:
+				spawn_enemy(mon_1)
+			for _i in 5:
+				spawn_enemy(mon_2)
+			for _i in 3:
+				spawn_enemy(mon_3)
+		7:
+			num_left = 15
+			for _i in 4:
+				spawn_enemy(mon_1)
+			for _i in 4:
+				spawn_enemy(mon_2)
+			for _i in 7:
+				spawn_enemy(mon_3)
+		8:
 			num_left = 1
 			spawn_enemy(boss)
 
@@ -211,7 +259,7 @@ func advance_wave() -> void:
 		$CanvasLayer/Control/Glitch/GTimer.start()
 		$Glitch.play()
 	index = -1
-	if wave == 7:
+	if wave == 9:
 		$Background.texture = preload("res://scenes/world/BG1.png")
 		$CanvasLayer/Control/GameOver/Label.text = "YOU WIN?!"
 		$CanvasLayer/Control/GameOver.show()
