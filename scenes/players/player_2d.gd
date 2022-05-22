@@ -87,28 +87,6 @@ func fire() -> void:
 	b.shoot(global_position.direction_to(get_global_mouse_position()))
 
 
-func _on_Hitbox_area_exited(area: Area2D) -> void:
-	if area.get("damage") == null:
-		return
-	if $InvincTimer.is_stopped() and not use_shield:
-		health -= area.damage
-		emit_signal("player_health_changed")
-	if area.is_in_group("bullet"):
-		area.queue_free()
-	if is_dying:
-		return
-	if health <= 0:
-		$Hit.play()
-		is_dying = true
-		for enemy in get_tree().get_nodes_in_group("enemy"):
-			enemy.target = null
-		$AnimationPlayer.play("die")
-	elif $InvincTimer.is_stopped() and not use_shield:
-		$Hit.play()
-		$AnimationPlayer.play("flash")
-		$InvincTimer.start()
-
-
 func _on_FireTimer_timeout() -> void:
 	fire()
 
@@ -155,3 +133,34 @@ func _on_ShieldTimer_timeout() -> void:
 
 func _on_RapidTimer_timeout() -> void:
 	$FireTimer.wait_time = 0.2
+
+
+func _on_Hitbox_area_entered(area: Area2D) -> void:
+	check_damage(area)
+
+func check_damage(area: Area2D) -> void:
+	if area.get("damage") == null:
+		return
+	if $InvincTimer.is_stopped() and not use_shield:
+		health -= area.damage
+		emit_signal("player_health_changed")
+	if area.is_in_group("bullet"):
+		area.queue_free()
+	if is_dying:
+		return
+	if health <= 0:
+		$Hit.play()
+		is_dying = true
+		for enemy in get_tree().get_nodes_in_group("enemy"):
+			enemy.target = null
+		$AnimationPlayer.play("die")
+	elif $InvincTimer.is_stopped() and not use_shield:
+		$Hit.play()
+		$AnimationPlayer.play("flash")
+		$InvincTimer.start()
+
+
+func _on_InvincTimer_timeout() -> void:
+	for area in $Hitbox.get_overlapping_areas():
+		check_damage(area)
+		break

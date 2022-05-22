@@ -201,10 +201,11 @@ visible = false
 position = Vector2( 0, -12 )
 texture = ExtResource( 10 )
 
-[connection signal="area_exited" from="Hitbox" to="." method="_on_Hitbox_area_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_FireTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="DropPickup" to="." method="_on_DropPickup_area_entered"]
+[connection signal="timeout" from="InvincTimer" to="." method="_on_InvincTimer_timeout"]
 [connection signal="timeout" from="BBTimer" to="." method="_on_BBTimer_timeout"]
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_ShieldTimer_timeout"]
 [connection signal="timeout" from="RapidTimer" to="." method="_on_RapidTimer_timeout"]
